@@ -3,11 +3,16 @@
 
 :root {
     --primary-color: #00aaff;
-    --background-color: #121212;
+    /* This is our dark color: rgb(18, 18, 18) */
+    --background-color-overlay: rgba(18, 18, 18, 0.95);
+    --background-color-solid: #121212;
     --card-color: #1e1e1e;
     --text-color: #e0e0e0;
     --text-secondary-color: #a0a0a0;
     --shadow-color: rgba(0, 0, 0, 0.5);
+    /* CSS variables for mouse position, JS will update these */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
 }
 
 * {
@@ -18,7 +23,6 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
     display: flex;
@@ -26,6 +30,28 @@ body {
     padding: 2rem;
     opacity: 0;
     animation: fadeIn 1s forwards;
+
+    /* --- Background Image Styles --- */
+    background-image: url('../images/background.jpg'); /* Relative path from css folder */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden; /* Prevents horizontal scrollbar */
+}
+
+/* --- Spotlight Overlay Effect --- */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+        circle 250px at var(--mouse-x) var(--mouse-y),
+        rgba(18, 18, 18, 0.6) 0%,
+        var(--background-color-solid) 100%
+    );
+    transition: background 0.1s ease-out; /* Smooths the effect slightly */
 }
 
 @keyframes fadeIn {
@@ -40,6 +66,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    /* --- Ensure content is above the spotlight overlay --- */
+    position: relative;
+    z-index: 1;
 }
 
 .card {
