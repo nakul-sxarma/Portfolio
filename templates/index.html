@@ -1,0 +1,64 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakul Sharma | Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header / Hero Section -->
+        <header class="hero">
+            <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Nakul Sharma" class="profile-img">
+            <h1 class="name">Nakul Sharma</h1>
+            <h2 class="tagline">Python Developer | AI Enthusiast | Data Science</h2>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/nakul-x-sharma/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/nakul-sxarma" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </header>
+
+        <!-- About Me Section -->
+        <section id="about" class="card">
+            <h3>About Me</h3>
+            <p>
+                I'm Nakul Sharma, a 3rd-year student at Government Engineering College Bharatpur (RTU Kota), pursuing a degree in AI & DS.
+                I'm an AI enthusiast, constantly exploring my potential in the field. This portfolio website serves as a dynamic replacement for my traditional resume.
+            </p>
+            <a href="{{ url_for('static', filename='resume.pdf') }}" class="btn" download="NakulSharma-Resume.pdf">Download Resume</a>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="card">
+            <h3>My Projects</h3>
+            <div class="project-placeholder">
+                <p>New projects are on the way. Stay tuned!</p>
+                <!-- You can add project cards here later -->
+                <!-- Example Project Card (hidden for now)
+                <div class="project-card">
+                    <h4>Project Title</h4>
+                    <p>A brief description of what this project does and the problem it solves.</p>
+                    <div class="tech-stack">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <a href="#" class="btn-secondary">View on GitHub</a>
+                </div>
+                -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Nakul Sharma. Built with Python & Flask.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
