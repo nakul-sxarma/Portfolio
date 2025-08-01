@@ -32,7 +32,7 @@ body {
     animation: fadeIn 1s forwards;
 
     /* --- Background Image Styles --- */
-    background-image: url('../images/background.jpg'); /* Relative path from css folder */
+    background-image: url('../images/wallpaper.jpg'); /* Relative path from css folder */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
