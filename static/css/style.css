@@ -3,8 +3,6 @@
 
 :root {
     --primary-color: #00aaff;
-    /* This is our dark color: rgb(18, 18, 18) */
-    --background-color-overlay: rgba(18, 18, 18, 0.95);
     --background-color-solid: #121212;
     --card-color: #1e1e1e;
     --text-color: #e0e0e0;
@@ -21,8 +19,15 @@
     box-sizing: border-box;
 }
 
+/* --- FIX: Apply the base background color here --- */
+html {
+    background-color: var(--background-color-solid);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
+    /* --- FIX: The body itself should be transparent to let the effect show through --- */
+    background-color: transparent;
     color: var(--text-color);
     line-height: 1.6;
     display: flex;
@@ -30,28 +35,30 @@ body {
     padding: 2rem;
     opacity: 0;
     animation: fadeIn 1s forwards;
-
-    /* --- Background Image Styles --- */
-    background-image: url('../images/background.jpg'); /* Relative path from css folder */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     position: relative;
     overflow-x: hidden; /* Prevents horizontal scrollbar */
 }
 
-/* --- Spotlight Overlay Effect --- */
-body::before {
-    content: '';
+/* --- Futuristic Spotlight Background --- */
+.background-spotlight {
     position: fixed;
     inset: 0;
-    z-index: 0;
-    background: radial-gradient(
+    z-index: -1; /* Place it behind all content */
+    background-image: url('../images/wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+
+    /* This mask makes the image visible only in a circle around the mouse */
+    mask-image: radial-gradient(
         circle 250px at var(--mouse-x) var(--mouse-y),
-        rgba(18, 18, 18, 0.6) 0%,
-        var(--background-color-solid) 100%
+        black 0%,      /* The area inside the circle is opaque in the mask, showing the image */
+        transparent 100% /* The area outside is transparent, hiding the image */
     );
-    transition: background 0.1s ease-out; /* Smooths the effect slightly */
+    -webkit-mask-image: radial-gradient( /* For Safari/Chrome compatibility */
+        circle 250px at var(--mouse-x) var(--mouse-y),
+        black 0%,
+        transparent 100%
+    );
 }
 
 @keyframes fadeIn {
@@ -66,9 +73,8 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    /* --- Ensure content is above the spotlight overlay --- */
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Ensures content stays above the background effect */
 }
 
 .card {
